@@ -4,10 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.sleepapp.Sleep
-import com.example.sleepapp.Past
-import com.example.sleepapp.Settings
-import com.example.sleepapp.R
+import com.example.sleepapp.*
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
@@ -19,15 +16,21 @@ private val TAB_TITLES = arrayOf(
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
+class SectionsPagerAdapter(private val context: Context, fm: FragmentManager, mainActivity: MainActivity) :
     FragmentPagerAdapter(fm) {
 
+    private lateinit var ma : MainActivity
+
+    init {
+        ma = mainActivity
+    }
+
     override fun getItem(position: Int): Fragment {
-        var fragment: Fragment = Sleep()
+        var fragment: Fragment = Sleep(ma)
         when (position) {
-            0 -> fragment = Sleep()
+            0 -> fragment = Sleep(ma)
             1 -> fragment = Past()
-            2 -> fragment = Settings()
+            2 -> fragment = Settings(ma)
         }
         return fragment
     }

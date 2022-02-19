@@ -20,13 +20,20 @@ import android.view.animation.Animation.AnimationListener
 
 //import kotlinx.android.synthetic.main.sleep_layout.*
 
-class Sleep : Fragment() {
+class Sleep(MainActivity: MainActivity) : Fragment() {
+
+    private lateinit var ma : MainActivity
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.sleep_layout, container, false)
+    }
+
+    init {
+        ma = MainActivity
     }
 
 
@@ -53,6 +60,8 @@ class Sleep : Fragment() {
                 })
                 sunMoon.startAnimation(animationOut)
                 isTracking = false
+                ma.sensors.pauseRecording()
+                collectButton.setText("Start Sleep Tracking")
             }
             else{
                 animationOut.setAnimationListener(object : AnimationListener {
@@ -65,6 +74,8 @@ class Sleep : Fragment() {
                 })
                 sunMoon.startAnimation(animationOut)
                 isTracking = true
+                ma.sensors.startRecording()
+                collectButton.setText("Stop Sleep Tracking")
             }
         }
 

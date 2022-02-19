@@ -1,12 +1,19 @@
 package com.example.sleepapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.settings_layout.*
+import kotlin.math.max
 
-class Settings : Fragment() {
+class Settings(MainActivity: MainActivity) : Fragment() {
+
+    private lateinit var ma : MainActivity
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -14,4 +21,33 @@ class Settings : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.settings_layout, container, false)
     }
+
+
+    init {
+        ma = MainActivity
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //set default value, once I implement the database this will be store there and remember
+        //the users choice
+
+        sensitivityBar.progress = 5;
+
+        sensitivityBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,progress: Int, fromUser: Boolean) {
+                // write custom code for progress is changed
+                Log.d("seek bar", "seek bar current value: " + sensitivityBar.progress)
+                ma.reqConfidenceLvl = 75 + sensitivityBar.progress;
+            }
+            override fun onStartTrackingTouch(seek: SeekBar) {
+                // don't care about this
+            }
+            override fun onStopTrackingTouch(seek: SeekBar) {
+                // don't care about this
+            }
+        })
+    }
+
 }
