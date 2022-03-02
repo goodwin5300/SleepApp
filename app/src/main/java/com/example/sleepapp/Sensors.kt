@@ -124,7 +124,7 @@ class Sensors( MainActivity: MainActivity) : AppCompatActivity(), SensorEventLis
             ma.confidenceLvl = saConfidence
             ma.checkConfidenceLvl()
         }
-    }
+    } 
 
     private fun logAllData() {
         val sdf = SimpleDateFormat("hh:mm:ss")
