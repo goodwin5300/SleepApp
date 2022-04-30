@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     public var reqLightLvl: Int = 20 //level of light required to assume the user is asleep
     public var reqMotionLvl: Int = 20 //level of motion required to assume the user is asleep
 
-    public lateinit var interpreter: Interpreter;
+     public lateinit var interpreter: Interpreter;
 
     public lateinit var db: Database; //to access the db
 
