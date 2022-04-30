@@ -3,6 +3,7 @@ package com.example.sleepapp
 import android.os.Build
 import android.os.Bundle
 import android.transition.*
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +15,10 @@ import kotlinx.android.synthetic.main.sleep_layout.*
 import android.view.animation.Animation
 
 import android.view.animation.Animation.AnimationListener
-
-
+import androidx.room.Room
+import com.example.sleepapp.ui.main.Database
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 //import kotlinx.android.synthetic.main.sleep_layout.*
@@ -77,6 +80,7 @@ class Sleep(MainActivity: MainActivity) : Fragment() {
                 ma.sensors.startRecording()
                 collectButton.setText("Stop Sleep Tracking")
             }
+
         }
 
     }

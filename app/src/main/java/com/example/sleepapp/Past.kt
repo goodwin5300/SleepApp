@@ -12,6 +12,9 @@ class Past : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         return inflater.inflate(R.layout.past_layout, container, false)
     }
 }

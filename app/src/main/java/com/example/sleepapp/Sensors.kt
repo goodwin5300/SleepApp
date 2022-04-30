@@ -4,6 +4,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.SleepClassifyEvent
@@ -106,6 +107,23 @@ class Sensors( MainActivity: MainActivity) : AppCompatActivity(), SensorEventLis
 
     }
 
+    var handler: Handler = Handler()
+    var runnable: Runnable? = null
+    var delay = 900000
+
+    public fun startTracking() {
+        handler.postDelayed(Runnable {
+            handler.postDelayed(runnable!!, delay.toLong())
+            ma.passDataToAI(acclReadings, proxReading, lightReading, acclVariance);
+        }.also { runnable = it }, delay.toLong())
+        super.onResume()
+    }
+
+    public fun stopTracking() {
+        super.onPause()
+        handler.removeCallbacks(runnable!!)
+    }
+
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         //todo
     }
@@ -124,7 +142,7 @@ class Sensors( MainActivity: MainActivity) : AppCompatActivity(), SensorEventLis
             ma.confidenceLvl = saConfidence
             ma.checkConfidenceLvl()
         }
-    } 
+    }
 
     private fun logAllData() {
         val sdf = SimpleDateFormat("hh:mm:ss")

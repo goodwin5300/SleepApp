@@ -34,12 +34,14 @@ class Settings(MainActivity: MainActivity) : Fragment() {
         //the users choice
 
         sensitivityBar.progress = 5;
+        lightSensitivityBar.progress = 5;
+        motionSensitivityBar.progress = 5;
 
         sensitivityBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar,progress: Int, fromUser: Boolean) {
                 // write custom code for progress is changed
                 Log.d("seek bar", "seek bar current value: " + sensitivityBar.progress)
-                ma.reqConfidenceLvl = 75 + sensitivityBar.progress;
+                ma.reqConfidenceLvl = 85 - sensitivityBar.progress;
             }
             override fun onStartTrackingTouch(seek: SeekBar) {
                 // don't care about this
@@ -48,6 +50,36 @@ class Settings(MainActivity: MainActivity) : Fragment() {
                 // don't care about this
             }
         })
+        lightSensitivityBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,progress: Int, fromUser: Boolean) {
+                // write custom code for progress is changed
+                Log.d("seek bar", "seek bar current value: " + lightSensitivityBar.progress)
+                ma.reqLightLvl = 15 + lightSensitivityBar.progress;
+            }
+            override fun onStartTrackingTouch(seek: SeekBar) {
+                // don't care about this
+            }
+            override fun onStopTrackingTouch(seek: SeekBar) {
+                // don't care about this
+            }
+        })
+        motionSensitivityBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,progress: Int, fromUser: Boolean) {
+                // write custom code for progress is changed
+                Log.d("seek bar", "seek bar current value: " + motionSensitivityBar.progress)
+                ma.reqMotionLvl = 15 + motionSensitivityBar.progress;
+            }
+            override fun onStartTrackingTouch(seek: SeekBar) {
+                // don't care about this
+            }
+            override fun onStopTrackingTouch(seek: SeekBar) {
+                // don't care about this
+            }
+        })
+
+        alarmBtn.setOnClickListener() {
+
+        }
     }
 
 }

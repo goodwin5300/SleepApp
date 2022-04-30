@@ -55,7 +55,7 @@ class SleepReceiver : BroadcastReceiver() {
             sensors = mainActivity.sensors;
 
             return PendingIntent.getBroadcast(
-                context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT
+                context, 0, intent, PendingIntent.FLAG_IMMUTABLE
             )
         }
 
