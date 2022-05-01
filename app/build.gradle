@@ -62,5 +62,5 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'org.tensorflow:tensorflow-lite'
+    implementation 'org.tensorflow:tensorflow-lite:1.12.0'
 }

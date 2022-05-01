@@ -23,13 +23,11 @@ import androidx.room.Room
 import com.example.sleepapp.ui.main.SectionsPagerAdapter
 import com.example.sleepapp.databinding.ActivityMainBinding
 import com.example.sleepapp.ui.main.Database
+import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.io.IOException
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
-import java.sql.Time
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -194,7 +192,8 @@ class MainActivity : AppCompatActivity() {
         input[3] = variance
         input[4] = prox
         input[5] = light
-        interpeter.run(input, output);
+        var output: Float = 0F
+        interpreter.run(input, output);
         return Array(1) { FloatArray(1) }
     }
 
